@@ -5,15 +5,15 @@ import (
 	"log"
 	"net/http"
 
-	home "go-htmx/handlers"
+	handler "go-htmx/handlers"
 )
 
 func main() {
 	fmt.Println("Hello, World!")
 
-	http.HandleFunc("/", home.Home)
-	http.HandleFunc("/add-movie", home.AddMovie)
-	http.HandleFunc("/about", home.About)
+	http.HandleFunc("/", handler.LoadHome)
+	http.HandleFunc("/add-movie", handler.AddMovie)
+	http.HandleFunc("/about", handler.About)
 
 	log.Fatal(http.ListenAndServe(":8080", nil))
 }

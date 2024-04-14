@@ -10,9 +10,10 @@ type Movies struct {
 	Year  string
 }
 
-func Home(w http.ResponseWriter, r *http.Request) {
-	tmpl := template.Must(template.ParseFiles("templates/home.html"))
+var tmpl = template.Must(template.ParseFiles("templates/home.html"))
 
+func LoadHome(w http.ResponseWriter, r *http.Request) {
+	// Loads the home.html template
 	movies := map[string][]Movies{
 		"Movies": {
 			{"The Shawshank Redemption", "1994"},
@@ -20,14 +21,13 @@ func Home(w http.ResponseWriter, r *http.Request) {
 			{"The Dark Knight", "2008"},
 		},
 	}
+
 	tmpl.Execute(w, movies)
 }
 
 func AddMovie(w http.ResponseWriter, r *http.Request) {
 	title := r.FormValue("title")
 	year := r.FormValue("year")
-
-	tmpl := template.Must(template.ParseFiles("templates/home.html"))
+	// Renders the movies-list-element template
 	tmpl.ExecuteTemplate(w, "movies-list-element", Movies{title, year})
-
 }
