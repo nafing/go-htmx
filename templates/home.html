@@ -3,11 +3,38 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script
+      src="https://unpkg.com/htmx.org@1.9.11"
+      integrity="sha384-0gxUXCCR8yv9FM2b+U3FDbsKthCI66oH5IA9fHppQq9DDMHuMauqq1ZHBpJxQ0J0"
+      crossorigin="anonymous"
+    ></script>
     <title>Home</title>
   </head>
   <body>
     <h1>Home</h1>
     <p>Welcome to the home page</p>
+
+    <div style="display: flex; justify-content: space-between">
+      <div id="movies-list">
+        {{ range .Movies }} {{ block "movies-list-element" . }}
+        <p>
+          <strong>{{ .Title }}</strong> <br />
+          {{ .Year }}
+        </p>
+        {{ end }} {{ end }}
+      </div>
+
+      <form
+        hx-post="/add-movie"
+        hx-target="#movies-list"
+        hx-swap="beforeend"
+        style="display: flex; flex-direction: column"
+      >
+        <input type="text" name="title" placeholder="Movie title" />
+        <input type="text" name="year" placeholder="Year" />
+        <button type="submit">Add movie</button>
+      </form>
+    </div>
 
     <a href="/about">About</a>
   </body>

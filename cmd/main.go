@@ -12,6 +12,7 @@ func main() {
 	fmt.Println("Hello, World!")
 
 	http.HandleFunc("/", home.Home)
+	http.HandleFunc("/add-movie", home.AddMovie)
 	http.HandleFunc("/about", home.About)
 
 	log.Fatal(http.ListenAndServe(":8080", nil))
