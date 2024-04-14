@@ -18,7 +18,6 @@ require (
 )
 
 require (
-	filippo.io/edwards25519 v1.1.0 // indirect
 	github.com/go-playground/validator/v10 v10.19.0
 	github.com/joho/godotenv v1.5.1 // indirect
 	golang.org/x/crypto v0.22.0
